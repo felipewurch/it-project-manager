@@ -12,25 +12,25 @@ typedef struct pes {
     char email[50];
     unsigned int rg; 
     papeisPessoas papel;  
-} pessoa;
+} pessoas;
 
 typedef struct titar {
   char tipoTarefa [15];
-}tipoTarefa;
+}tipoTarefas;
 
 typedef struct tar {
   char tituloTarefa[40];
   char descricao[150];
   float tempoEstimado;
-  tipoTarefa tpTarefa;
+  tipoTarefas tpTarefa;
   char status[10];
-} tarefa;
+} tarefas;
 
 typedef struct proj {
   char nomeProjeto[50];
-  tarefa tarefas[];
-  pessoa pessoas[];
-} projeto;
+  tarefas tarefas[2];
+  pessoas pessoas[2];
+} projetos;
 
 
 const char* boas_vindas() {
@@ -44,9 +44,10 @@ const char* menu() {
 
 int main()
 {
-  struct proj *ptr;
   int i, n;
   int opcaoMenu, opcaoContinuar;
+  int qtdPessoas, contador;
+  pessoas *pessoa;
 
 printf("%s", boas_vindas());
 do
@@ -60,7 +61,23 @@ case 1:
   /* implementar cadastro de projetos*/
   break;
 case 2:
-/*implementar cadastro de pessoas*/
+  printf("Digite a quantidade de pessoas que deseja cadastrar: \n");
+  scanf("%d", &qtdPessoas);
+  pessoa = (struct pessoas*) malloc(qtdPessoas * sizeof(pessoas));
+  for(contador = 0; contador < qtdPessoas; ++contador)
+  {
+    printf("Digite o nome da pessoa %d: \n", contador+1);
+    scanf("%s",(pessoa+contador)->nome);
+    printf("Digite a data de nascimento no formato ddMMaaaa: \n");
+    scanf("%d",&(pessoa+contador)->dataDeNascimento);
+    printf("Digite o e-mail: \n ");
+    scanf("%s",(pessoa+contador)->email);
+    printf("Digite o numero de RG: \n");
+    scanf("%d",&(pessoa+contador)->rg);
+    printf("Digite o papel dessa pessoa no projeto: \n");
+    scanf("%s",(pessoa+contador)->papel.papel);
+    printf("Dados inseridos!\n");
+  }
   break;
 case 3:
 /*implementar cadastro de tipos de tarefa*/  
@@ -85,10 +102,8 @@ scanf("%d", &opcaoContinuar);
   }while (opcaoContinuar==1);
    /*printf("Enter the number of projects: ");
    scanf("%d", &n);
-
   
    ptr = (struct proj*) malloc(n * sizeof(struct proj));
-
    for(i = 0; i < n; ++i)
    {
        printf("Enter project name: ");
