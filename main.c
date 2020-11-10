@@ -24,14 +24,49 @@ typedef struct proj {
 } projeto;
 
 
+const char* boas_vindas() {
+  return "Bem-vindo ao IT Project Manager \nDigite a opcao desejada: \n";
+}
+
+const char* menu() {
+  return "1 - cadastro de projetos \n2 - cadastro de pessoas \n3 - cadastro de tipos de tarefa \n4 - cadastro de papeis de pessoas \n5 - cadastro de tarefas \n";
+}
+
+
 int main()
 {
-
-
   struct proj *ptr;
-   int i, n;
+  int i, n;
+  int opcao;
 
-   printf("Enter the number of projects: ");
+printf("%s", boas_vindas());
+printf("%s", menu());
+scanf("%d", &opcao);
+
+switch (opcao)
+{
+case 1:
+  /* implementar cadastro de projetos*/
+  break;
+case 2:
+/*implementar cadastro de pessoas*/
+  break;
+case 3:
+/*implementar cadastro de tipos de tarefa*/  
+  break;
+case 4:
+/*implementar cadastro de papeis de pessoas*/
+  break;
+case 5:
+/*implementar cadastro de tarefas*/
+  break;  
+default:
+  printf("Opção inválida\n");
+  break;
+}
+
+  
+   /*printf("Enter the number of projects: ");
    scanf("%d", &n);
 
   
@@ -44,7 +79,7 @@ int main()
        
        
    }
-
+*/
 
 return 0;
 }
