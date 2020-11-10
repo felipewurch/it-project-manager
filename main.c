@@ -47,7 +47,9 @@ int main()
   int i, n;
   int opcaoMenu, opcaoContinuar;
   int qtdPessoas, contador;
+  int qtdTarefas;
   pessoas *pessoa;
+  tarefas *tarefa;
 
 printf("%s", boas_vindas());
 do
@@ -87,6 +89,18 @@ case 4:
   break;
 case 5:
 /*implementar cadastro de tarefas*/
+printf("Digite a quantidade de tarefas que deseja cadastrar: \n");
+  scanf("%d", &qtdTarefas);
+  tarefa = (struct tarefas*) malloc(qtdTarefas * sizeof(tarefas));
+  for(contador = 0; contador < qtdTarefas; ++contador)
+  {
+    printf("Digite o titulo da tarefa %d: \n", contador+1);
+    scanf("%s",(tarefa+contador)->tituloTarefa);
+    printf("Digite a descrição da tarefa: \n");
+    scanf("%s",&(tarefa+contador)->descricao);
+    printf("Digite tempo estimado: \n ");
+    scanf("%d",(tarefa+contador)->tempoEstimado);
+  }
   break;  
 default:
   printf("Opcao invalida\n");
