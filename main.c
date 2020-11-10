@@ -15,7 +15,7 @@ typedef struct pes {
 } pessoas;
 
 typedef struct titar {
-  char tipoTarefa [15];
+  char tarefa [15];
 }tipoTarefas;
 
 typedef struct tar {
@@ -47,9 +47,10 @@ int main()
   int i, n;
   int opcaoMenu, opcaoContinuar;
   int qtdPessoas, contador;
-  int qtdTarefas;
+  int qtdTarefas,qtdTipoTarefas;
   pessoas *pessoa;
   tarefas *tarefa;
+  tipoTarefas *tipoTarefa;
 
 printf("%s", boas_vindas());
 do
@@ -82,7 +83,16 @@ case 2:
   }
   break;
 case 3:
-/*implementar cadastro de tipos de tarefa*/  
+/*implementar cadastro de tipos de tarefa*/ 
+printf("Digite a quantidade de tipos de tarefas: \n");
+  scanf("%d", &qtdTipoTarefas);
+  tipoTarefa = (struct tipoTarefas*) malloc(qtdTipoTarefas * sizeof(tipoTarefas));
+  for(contador = 0; contador < qtdTipoTarefas; ++contador)
+  {
+    printf("Digite o tipo de tarefa %d: \n", contador+1);
+    scanf("%s",(tipoTarefa+contador)->tarefa);
+    printf("Dados inseridos!\n");
+  } 
   break;
 case 4:
 /*implementar cadastro de papeis de pessoas*/
@@ -97,9 +107,12 @@ printf("Digite a quantidade de tarefas que deseja cadastrar: \n");
     printf("Digite o titulo da tarefa %d: \n", contador+1);
     scanf("%s",(tarefa+contador)->tituloTarefa);
     printf("Digite a descrição da tarefa: \n");
-    scanf("%s",&(tarefa+contador)->descricao);
+    scanf("%s",(tarefa+contador)->descricao);
     printf("Digite tempo estimado: \n ");
-    scanf("%d",(tarefa+contador)->tempoEstimado);
+    scanf("%f",&(tarefa+contador)->tempoEstimado);
+    printf("Digite o status da tarefa %d: \n", contador+1);
+    scanf("%s",(tarefa+contador)->status);
+    printf("Dados inseridos!\n");
   }
   break;  
 default:
