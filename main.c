@@ -28,8 +28,8 @@ typedef struct tar {
 
 typedef struct proj {
   char nomeProjeto[50];
-  tarefa tarefas[2];
-  pessoa pessoas[2];
+  tarefa tarefas[];
+  pessoa pessoas[];
 } projeto;
 
 
