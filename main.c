@@ -1,35 +1,44 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+typedef struct papeis {
+    char papel[40];
+}papeisPessoas;
+
 typedef struct pes {
     char nome[50];
     unsigned int dataDeNascimento;
     char email[50];
-    unsigned int rg;   
-    char cargo[50];
+    unsigned int rg; 
+    papeisPessoas papel;  
 } pessoa;
+
+typedef struct titar {
+  char tipoTarefa [15];
+}tipoTarefa;
 
 typedef struct tar {
   char tituloTarefa[40];
   char descricao[150];
   float tempoEstimado;
-  unsigned int tipoTarefa;
+  tipoTarefa tpTarefa;
   char status[10];
 } tarefa;
 
 typedef struct proj {
   char nomeProjeto[50];
-  tarefa tarefas[10];
-  pessoa pessoas[5];
+  tarefa tarefas[2];
+  pessoa pessoas[2];
 } projeto;
 
 
 const char* boas_vindas() {
-  return "Bem-vindo ao IT Project Manager \nDigite a opcao desejada: \n";
+  return "Bem-vindo ao IT Project Manager \n";
 }
 
 const char* menu() {
-  return "1 - cadastro de projetos \n2 - cadastro de pessoas \n3 - cadastro de tipos de tarefa \n4 - cadastro de papeis de pessoas \n5 - cadastro de tarefas \n";
+  return "Digite a opcaoMenu desejada: \n1 - cadastro de projetos \n2 - cadastro de pessoas \n3 - cadastro de tipos de tarefa \n4 - cadastro de papeis de pessoas \n5 - cadastro de tarefas \n";
 }
 
 
@@ -37,13 +46,15 @@ int main()
 {
   struct proj *ptr;
   int i, n;
-  int opcao;
+  int opcaoMenu, opcaoContinuar;
 
 printf("%s", boas_vindas());
+do
+{
 printf("%s", menu());
-scanf("%d", &opcao);
+scanf("%d", &opcaoMenu);
 
-switch (opcao)
+switch (opcaoMenu)
 {
 case 1:
   /* implementar cadastro de projetos*/
@@ -65,7 +76,13 @@ default:
   break;
 }
 
-  
+printf("Burndown do projeto: \n");
+/* Criar funcao que exiba a situacao atual dos projetos cadastrados */
+
+printf("Deseja continuar o programa ? digite 1 para continuar");
+scanf("%d", &opcaoContinuar);
+
+  }while (opcaoContinuar==1);
    /*printf("Enter the number of projects: ");
    scanf("%d", &n);
 
