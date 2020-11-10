@@ -38,7 +38,7 @@ const char* boas_vindas() {
 }
 
 const char* menu() {
-  return "Digite a opcaoMenu desejada: \n1 - cadastro de projetos \n2 - cadastro de pessoas \n3 - cadastro de tipos de tarefa \n4 - cadastro de papeis de pessoas \n5 - cadastro de tarefas \n";
+  return "Digite a opcao desejada: \n1 - cadastro de projetos \n2 - cadastro de pessoas \n3 - cadastro de tipos de tarefa \n4 - cadastro de papeis de pessoas \n5 - cadastro de tarefas \n";
 }
 
 
@@ -72,14 +72,14 @@ case 5:
 /*implementar cadastro de tarefas*/
   break;  
 default:
-  printf("Opção inválida\n");
+  printf("Opcao invalida\n");
   break;
 }
 
 printf("Burndown do projeto: \n");
 /* Criar funcao que exiba a situacao atual dos projetos cadastrados */
 
-printf("Deseja continuar o programa ? digite 1 para continuar");
+printf("Deseja continuar o programa ? digite 1 para continuar \n");
 scanf("%d", &opcaoContinuar);
 
   }while (opcaoContinuar==1);
