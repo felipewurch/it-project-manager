@@ -28,8 +28,11 @@ typedef struct tar {
 
 typedef struct proj {
   char nomeProjeto[50];
-  tarefas tarefas[2];
-  pessoas pessoas[2];
+  tarefas tarefas[2]; //Nao entendi como relacioner esse com as tarefas, mas criei um int
+  int pessoasProjeto;	//Caso formos mexer nisso, deixei aqui mesmo assim.
+  int qtdTarefasProjeto; 
+  pessoas pessoas[2]; //Nao entendi como relacioner esse com as tarefas, mas criei um int
+   
 } projetos;
 
 
@@ -48,9 +51,12 @@ int main()
   int opcaoMenu, opcaoContinuar;
   int qtdPessoas, contador;
   int qtdTarefas,qtdTipoTarefas;
+  int qtdProjetos, contador2, contadorTarefas = 0;
+  
   pessoas *pessoa;
   tarefas *tarefa;
   tipoTarefas *tipoTarefa;
+  projetos *projeto;
 
 printf("%s", boas_vindas());
 do
@@ -62,6 +68,25 @@ switch (opcaoMenu)
 {
 case 1:
   /* implementar cadastro de projetos*/
+  
+  printf("Digite o numero de projetos que deseja criar:  \n");
+  scanf("%d", &qtdProjetos);
+  
+  projeto = (struct projetos*) malloc(qtdProjetos * sizeof(projetos));
+  
+  for(contador2 = 0; i < qtdProjetos; contador2++){
+  	
+  	printf("Digite o nome do projeto %d: \n", contador2+1);
+  	scanf("%s", (projeto+contador2)-> nomeProjeto);
+  	
+  	printf("Digite a quantidade de pessoas no projeto: \n");
+  	scanf("%d", (projeto+contador2)-> pessoasProjeto);
+  	
+  	printf("Digite a quantidade de tarefas do projeto: \n");
+  	scanf("%d", (projeto+contador2)-> qtdTarefasProjeto);
+  	
+  }
+  
   break;
 case 2:
   printf("Digite a quantidade de pessoas que deseja cadastrar: \n");
@@ -106,7 +131,7 @@ printf("Digite a quantidade de tarefas que deseja cadastrar: \n");
   {
     printf("Digite o titulo da tarefa %d: \n", contador+1);
     scanf("%s",(tarefa+contador)->tituloTarefa);
-    printf("Digite a descrição da tarefa: \n");
+    printf("Digite a descriÃ§Ã£o da tarefa: \n");
     scanf("%s",(tarefa+contador)->descricao);
     printf("Digite tempo estimado: \n ");
     scanf("%f",&(tarefa+contador)->tempoEstimado);
