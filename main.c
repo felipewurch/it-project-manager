@@ -52,11 +52,13 @@ int main()
   int qtdPessoas, contador;
   int qtdTarefas,qtdTipoTarefas;
   int qtdProjetos, contador2, contadorTarefas = 0;
+  int qtdPapeis;
   
   pessoas *pessoa;
   tarefas *tarefa;
   tipoTarefas *tipoTarefa;
   projetos *projeto;
+  papeisPessoas *papeisPessoa;
 
 printf("%s", boas_vindas());
 do
@@ -121,6 +123,15 @@ printf("Digite a quantidade de tipos de tarefas: \n");
   break;
 case 4:
 /*implementar cadastro de papeis de pessoas*/
+printf("Digite a quantidade de papeis de pessoas: \n");
+  scanf("%d", &qtdPapeis);
+  papeisPessoa = (struct papeisPessoas*) malloc(qtdPapeis * sizeof(papeisPessoas));
+  for(contador = 0; contador < qtdPapeis; ++contador)
+  {
+    printf("Digite o papel %d: \n", contador+1);
+    scanf("%s",(papeisPessoa+contador)->papel);
+    printf("Dados inseridos!\n");
+  } 
   break;
 case 5:
 /*implementar cadastro de tarefas*/
@@ -131,7 +142,7 @@ printf("Digite a quantidade de tarefas que deseja cadastrar: \n");
   {
     printf("Digite o titulo da tarefa %d: \n", contador+1);
     scanf("%s",(tarefa+contador)->tituloTarefa);
-    printf("Digite a descrição da tarefa: \n");
+    printf("Digite a descriç�o da tarefa: \n");
     scanf("%s",(tarefa+contador)->descricao);
     printf("Digite tempo estimado: \n ");
     scanf("%f",&(tarefa+contador)->tempoEstimado);
