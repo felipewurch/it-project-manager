@@ -224,6 +224,7 @@ printf("Burndown do projeto: \n");
 		for(contador = 0; contador < qtdPapeis; ++contador){
 			
 			printf("Papel numero [%d]: %s.\n", contador+1, (papeisPessoa+contador)->papel);
+				
 		
 		}
 		
@@ -235,18 +236,21 @@ printf("Burndown do projeto: \n");
 		printf("Nada foi cadastrado ate o momento!\n");
 	}
 	
-	printf("Tarefas:\n");
+	printf("Tarefas\n");
 	
 	if(qtdTarefas > 0){
 		
 		for(contador = 0; contador < qtdTarefas; ++contador){
   			
-  			printf("Tarefa numero %d: %s.\n", contador+1, (tarefa+contador)->tituloTarefa);
-  		}
+  			printf("Tarefa numero %d:\n\nTitulo: %s.\nStatus: [%s].\n", contador+1, (tarefa+contador)->tituloTarefa, (tarefa+contador)->status);
+		  
+		  }
 		  	
 	}else if(qtdTarefas <= 0){
+		
 		printf("Quantidade de tarefas cadastradas e NULA. Nao ha tarefas cadastradas.\n");
 	}else{
+		
 		printf("Nenhuma tarefa foi cadastrada ate o momento!\n");
 	}
 
