@@ -52,8 +52,9 @@ int main()
   int opcaoMenu, opcaoContinuar;
   int qtdPessoas, contador;
   int qtdTarefas,qtdTipoTarefas;
-  int qtdProjetos, contador2, contadorTarefas = 0;
+  int qtdProjetos, contador2, contador3, contadorTarefas = 0;
   int qtdPapeis,escolhaPapel;
+  int ContadorBurndown, qtdProjetosBurnD = 0;
   
   pessoas *pessoa;
   tarefas *tarefa;
@@ -75,18 +76,22 @@ case 1:
   printf("Digite o numero de projetos que deseja criar:  \n");
   scanf("%d", &qtdProjetos);
   
+  qtdProjetosBurnD = qtdProjetos;
+  
   projeto = (struct projetos*) malloc(qtdProjetos * sizeof(projetos));
   
-  for(contador2 = 0; i < qtdProjetos; contador2++){
+  for(contador3 = 0; i < qtdProjetos; contador3++){
   	
-  	printf("Digite o nome do projeto %d: \n", contador2+1);
-  	scanf("%s", (projeto+contador2)-> nomeProjeto);
+  	printf("Digite o nome do projeto %d: \n", contador3+1);
+  	scanf("%s", (projeto+contador3)-> nomeProjeto);
+  	
+  	printf("Nome: %s.", (projeto+contador3)-> nomeProjeto);
   	
   	printf("Digite a quantidade de pessoas no projeto: \n");
-  	scanf("%d", (projeto+contador2)-> pessoasProjeto);
+  	scanf("%d", (projeto+contador3)-> pessoasProjeto);
   	
   	printf("Digite a quantidade de tarefas do projeto: \n");
-  	scanf("%d", (projeto+contador2)-> qtdTarefasProjeto);
+  	scanf("%d", (projeto+contador3)-> qtdTarefasProjeto);
   	
   }
   
@@ -106,7 +111,7 @@ case 2:
     printf("Digite o numero de RG: \n");
     scanf("%d",&(pessoa+contador)->rg);
     printf("Digite o papel dessa pessoa no projeto: \n");
-    scanf("%s",(pessoa+contador)->papel.papel);
+    //scanf("%s",(pessoa+contador)->papel.papel);
     printf("Dados inseridos!\n");
     
    	
@@ -126,8 +131,8 @@ printf("Digite a quantidade de tipos de tarefas: \n");
   break;
 case 4:
 /*implementar cadastro de papeis de pessoas*/
-printf("Digite a quantidade de papeis de pessoas: \n");
-  scanf("%d", &qtdPapeis);
+	printf("Digite a quantidade de papeis de pessoas: \n");
+  	scanf("%d", &qtdPapeis);
   papeisPessoa = (struct papeisPessoas*) malloc(qtdPapeis * sizeof(papeisPessoas));
   for(contador = 0; contador < qtdPapeis; ++contador)
   {
@@ -182,7 +187,7 @@ printf("Digite a quantidade de tarefas que deseja cadastrar: \n");
       scanf("%d",&escolhaPapel);
       contador2 = escolhaPapel-1;
       
-      printf("papel da pessoa %s e: %s \n",(pessoa+contador)->nome, (pessoa+contador2)->papel.papel);
+      //printf("papel da pessoa %s e: %s \n",(pessoa+contador)->nome, (pessoa+contador2)->papel.papel);
 
 
       /*strcpy((papeisPessoa+contador2)->papel, (pessoa+contador)->papel.papel);
@@ -212,7 +217,39 @@ break;
 }
 
 printf("Burndown do projeto: \n");
-/* Criar funcao que exiba a situacao atual dos projetos cadastrados */
+ //Criar funcao que exiba a situacao atual dos projetos cadastrados 
+ printf("Papeis:\n");
+	if(qtdPapeis > 0){	
+		
+		for(contador = 0; contador < qtdPapeis; ++contador){
+			
+			printf("Papel numero [%d]: %s.\n", contador+1, (papeisPessoa+contador)->papel);
+		
+		}
+		
+	}else if(qtdPapeis <= 0){
+		
+		printf("Quantidade de papeis cadastrados e NULA. Nao ha papeis cadastrados.\n");
+		
+	}else{
+		printf("Nada foi cadastrado ate o momento!\n");
+	}
+	
+	printf("Tarefas:\n");
+	
+	if(qtdTarefas > 0){
+		
+		for(contador = 0; contador < qtdTarefas; ++contador){
+  			
+  			printf("Tarefa numero %d: %s.\n", contador+1, (tarefa+contador)->tituloTarefa);
+  		}
+		  	
+	}else if(qtdTarefas <= 0){
+		printf("Quantidade de tarefas cadastradas e NULA. Nao ha tarefas cadastradas.\n");
+	}else{
+		printf("Nenhuma tarefa foi cadastrada ate o momento!\n");
+	}
+
 
 printf("Deseja continuar o programa ? digite 1 para continuar \n");
 scanf("%d", &opcaoContinuar);
@@ -233,4 +270,3 @@ scanf("%d", &opcaoContinuar);
 
 return 0;
 }
-
