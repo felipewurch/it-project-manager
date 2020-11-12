@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 
 typedef struct papeis {
@@ -11,7 +12,7 @@ typedef struct pes {
     unsigned int dataDeNascimento;
     char email[50];
     unsigned int rg; 
-    papeisPessoas papel;  
+    struct papeisPessoas *papel;  
 } pessoas;
 
 typedef struct titar {
@@ -41,7 +42,7 @@ const char* boas_vindas() {
 }
 
 const char* menu() {
-  return "Digite a opcao desejada: \n1 - cadastro de projetos \n2 - cadastro de pessoas \n3 - cadastro de tipos de tarefa \n4 - cadastro de papeis de pessoas \n5 - cadastro de tarefas \n";
+  return "Digite a opcao desejada: \n1 - cadastro de projetos \n2 - cadastro de pessoas \n3 - cadastro de tipos de tarefa \n4 - cadastro de papeis de pessoas \n5 - cadastro de tarefas \n6 - cadastro de papeis de pessoas na pessoa \n";
 }
 
 
@@ -52,7 +53,7 @@ int main()
   int qtdPessoas, contador;
   int qtdTarefas,qtdTipoTarefas;
   int qtdProjetos, contador2, contadorTarefas = 0;
-  int qtdPapeis;
+  int qtdPapeis,escolhaPapel;
   
   pessoas *pessoa;
   tarefas *tarefa;
@@ -107,6 +108,8 @@ case 2:
     printf("Digite o papel dessa pessoa no projeto: \n");
     scanf("%s",(pessoa+contador)->papel.papel);
     printf("Dados inseridos!\n");
+    
+   	
   }
   break;
 case 3:
@@ -142,7 +145,7 @@ printf("Digite a quantidade de tarefas que deseja cadastrar: \n");
   {
     printf("Digite o titulo da tarefa %d: \n", contador+1);
     scanf("%s",(tarefa+contador)->tituloTarefa);
-    printf("Digite a descriç�o da tarefa: \n");
+    printf("Digite a descriÃ§Ão da tarefa: \n");
     scanf("%s",(tarefa+contador)->descricao);
     printf("Digite tempo estimado: \n ");
     scanf("%f",&(tarefa+contador)->tempoEstimado);
@@ -151,9 +154,61 @@ printf("Digite a quantidade de tarefas que deseja cadastrar: \n");
     printf("Dados inseridos!\n");
   }
   break;  
-default:
-  printf("Opcao invalida\n");
-  break;
+  case 6:
+  	
+  	if(qtdPapeis>0)
+	{	
+  	printf("Digite a quantidade de pessoas que deseja cadastrar: \n");
+  	scanf("%d", &qtdPessoas);
+  	pessoa = (struct pessoas*) malloc(qtdPessoas * sizeof(pessoas));
+  	
+  	for(contador = 0; contador < qtdPessoas; ++contador)
+  	{
+  	  printf("Digite o nome da pessoa %d: \n", contador+1);
+  	  scanf("%s",(pessoa+contador)->nome);
+  	  printf("Digite a data de nascimento no formato ddMMaaaa: \n");
+  	  scanf("%d",&(pessoa+contador)->dataDeNascimento);
+  	  printf("Digite o e-mail: \n ");
+  	  scanf("%s",(pessoa+contador)->email);
+  	  printf("Digite o numero de RG: \n");
+  	  scanf("%d",&(pessoa+contador)->rg);
+  	  printf("Selecione o papel dessa pessoa no projeto: \n");
+		  	  
+		  	for(contador2 = 0; contador2 < qtdPapeis; ++contador2)
+		  {
+		    printf("papel %d: %s \n",contador2+1,(papeisPessoa+contador2)->papel);
+        /*strcpy((pessoa+contador)->papel.papel, (papeisPessoa+contador2)->papel);*/
+		  } 
+      scanf("%d",&escolhaPapel);
+      contador2 = escolhaPapel-1;
+      
+      printf("papel da pessoa %s e: %s \n",(pessoa+contador)->nome, (pessoa+contador2)->papel.papel);
+
+
+      /*strcpy((papeisPessoa+contador2)->papel, (pessoa+contador)->papel.papel);
+      printf("papel da pessoa %s e: %s \n",(pessoa+contador)->nome, (pessoa+contador2)->papel.papel);
+      */
+  
+
+		  /*printf("Selecione o numero referente ao papel\n");
+			
+			
+			(pessoa+contador)->papel.papel;
+			
+  	  printf("Dados inseridos!\n");
+  		printf("%d : %s",escolhaPapel,(pessoa+escolhaPapel)->papel.papel);
+  		*/
+  		
+  		
+  	}
+  	
+	}else 
+ 	{
+ 	printf("Voce precisa cadastrar pelo menos um papel de pessoa! \n");
+ 	}
+		
+		
+break;
 }
 
 printf("Burndown do projeto: \n");
@@ -178,3 +233,4 @@ scanf("%d", &opcaoContinuar);
 
 return 0;
 }
+
